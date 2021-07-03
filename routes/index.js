@@ -1,6 +1,6 @@
-const express = require('express')
-const app = express()
-const mg = require('mongoose')
+const router = require('express').Router()
 
-const router = express.Router()
-const db = require('../models')
+router.use('/', require('./workoutRoutes.js'))
+router.use('/', require('./htmlRoutes.js'))
+
+module.exports = router

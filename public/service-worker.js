@@ -3,21 +3,19 @@ const urls = [
   '/index.html',
   '/stats.html',
   '/exercise.html',
-  '/manifest.json',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png'
+  '/manifest.json'
 ]
 
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open('menu-cache-v1')
+    caches.open('fitness-cache-v1')
       .then(cache => cache.addAll(urls)))
 })
 
 self.addEventListener('fetch', event => {
   if (event.request.url.includes('/api/')) {
     event.respondWith(
-      caches.open('menu-data-cache-v1').then(cache => {
+      caches.open('fitness-data-cache-v1').then(cache => {
         return fetch(event.request)
           .then(res => {
             console.log('Not failing')
