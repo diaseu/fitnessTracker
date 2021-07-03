@@ -1,7 +1,7 @@
 {
-  "name": "mongoose_skeleton",
+  "name": "Fitness Tracker",
   "version": "1.0.0",
-  "description": "",
+  "description": "Build your workouts with the Fitness Tracker. This app will keep track of your workout exercises, including stat breakdowns of workouts done and building new workout.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,17 +12,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.16.3",
-    "mongoose": "^5.3.16",
+    "mongoose": "^5.13.1",
     "morgan": "^1.9.1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/diaseu/workoutTracker.git"
+    "url": "git+https://github.com/diaseu/fitnessTracker.git"
   },
   "keywords": [],
   "bugs": {
-    "url": "https://github.com/diaseu/workoutTracker/issues"
+    "url": "https://github.com/diaseu/fitnessTracker/issues"
   },
-  "homepage": "https://github.com/diaseu/workoutTracker#readme"
+  "homepage": "https://github.com/diaseu/fitnessTracker#readme",
+  "devDependencies": {}
 }

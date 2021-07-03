@@ -3,7 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const { join } = require('path')
-const mongoose = require('moongoose')
+const mongoose = require('mongoose')
 
 const { Workout } = require('./models')
 

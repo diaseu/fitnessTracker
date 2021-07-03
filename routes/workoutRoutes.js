@@ -1,9 +1,8 @@
 const router = require('express').Router()
 const { Workout, Exercise } = require('../models')
-const passport = require('passport')
 
 // POST one Exercise
-router.post('/exercise', passport.authenticate('jwt'), (req, res) => Item.create({
+router.post('/exercise', (req, res) => Item.create({
   name: req.body.name,
   description: req.body.description,
   price: req.body.price,
@@ -15,10 +14,10 @@ router.post('/exercise', passport.authenticate('jwt'), (req, res) => Item.create
   .catch(err => console.log(err)))
 
   // POST Workout (all exercises)
-router.post('/exercise/bulk', passport.authenticate('jwt'), (req, res) => {
+router.post('/exercise/bulk', (req, res) => {
   Item.insertMany(req.body)
     .then(items => res.json(items))
     .catch(err => console.log(err))
 })
 
-module.exports = router
+module.exports = router;

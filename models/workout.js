@@ -6,13 +6,12 @@ const { model, Schema } = require('mongoose')
 const Workout = new Schema({
   name: {
       type: String,
-      unique: true,
       required: true
     },
   day: {
       type: Date,
       default: Date.now
-  }
+  },
   exercise: [
     {
       name: String,
