@@ -1,5 +1,5 @@
 {
-  "name": "Fitness Tracker",
+  "name": "fitnessTracker",
   "version": "1.0.0",
   "description": "Build your workouts with the Fitness Tracker. This app will keep track of your workout exercises, including stat breakdowns of workouts done and building new workout.",
   "main": "server.js",
@@ -15,7 +15,8 @@
     "dotenv": "^10.0.0",
     "express": "^4.16.3",
     "mongoose": "^5.13.1",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "nodemon": "^2.0.9"
   },
   "repository": {
     "type": "git",

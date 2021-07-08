@@ -1,23 +1,48 @@
 const router = require('express').Router()
-const { Workout, Exercise } = require('../models')
+const { Workout } = require('../models')
 
-// POST one Exercise
-router.post('/exercise', (req, res) => Item.create({
-  name: req.body.name,
-  description: req.body.description,
-  price: req.body.price,
-  user: req.user._id
-})
-  .then(item => User.findByIdAndUpdate(item.user, { $push: { menu: item._id } })
-    .then(() => res.json(item))
-    .catch(err => console.log(err)))
-  .catch(err => console.log(err)))
+// Get Workout
+router.get('/workouts', (req, res) => {
+  Workout.aggregate([
+    { $addFields: {
+        totalDuration: {
+          $sum: '$exercises.duration'
+        }
+      }
+    }])
+  .then(workout => res.json(workout))
+  .catch(err => res.json(err)) })
 
-  // POST Workout (all exercises)
-router.post('/exercise/bulk', (req, res) => {
-  Item.insertMany(req.body)
-    .then(items => res.json(items))
-    .catch(err => console.log(err))
+// Get Workouts In Range 
+router.get('/workouts/range', (req, res) => {
+  Workout.aggregate([
+  {
+    $addFields: {
+      totalDuration: {
+        $sum: '$exercises.duration'
+      }
+    }
+  }])
+    .then(workouts => {
+      const weekWorkout = []
+      if (workouts.length > 7) {
+        for (let i = 0; i < 7; i++) {
+          weekWorkout.push(workouts[i + workouts.length - 7])
+        }
+      }
+      res.json(weekWorkout)
+    })
+  .catch(err => res.json(err))
 })
+
+// Create Workout
+router.post('/workouts', (req, res) => Workout.create({ ...req.body, day: new Date(new Date().setDate(new Date().getDate()))})
+  .then(workout => res.json(workout))
+  .catch(err => res.json(err)))
+
+// Add Exercise - Update Workout with new exercise (pushed)
+router.put('/workouts/:id', async (req, res) => Workout.findByIdAndUpdate(req.params.id, { $push: { exercises: req.body } })
+  .then(exercise => res.status(200))
+  .catch(err => res.json(err)))
 
 module.exports = router;
